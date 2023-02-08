@@ -12,10 +12,9 @@ py main.py --source 'path to folder'
 
 parser = argparse.ArgumentParser(description='App for sorting folder')
 parser.add_argument('-s', '--source', help="Source folder", required=True)  # option that takes a value
-# parser.add_argument('-o', '--output', default='dist')
 args = vars(parser.parse_args())  # object -> dict
 source = args.get('source')
-# output = source  # args.get('output')
+
 
 folders = []
 images = (".jpeg", ".png", ".jpg", ".svg")
@@ -50,7 +49,7 @@ def sort_file(path: Path):
                 except OSError as e:
                     logging.error(e)
             elif ext in video:
-                new_path = output_folder / 'VIDEO'
+                new_path = output_folder / 'VIDEOS'
                 try:
                     new_path.mkdir(exist_ok=True, parents=True)
                     move(el, new_path / el.name)
@@ -60,7 +59,7 @@ def sort_file(path: Path):
                 new_path = output_folder / 'ARCHIVES'
                 try:
                     new_path.mkdir(exist_ok=True, parents=True)
-                    shutil.unpack_archive(el, new_path / el.name)
+                    unpack_archive(el, new_path / el.name)
                 except OSError as e:
                     logging.error(e)
 
@@ -79,4 +78,4 @@ if __name__ == '__main__':
         threads.append(th)
 
     [th.join() for th in threads]
-    logging.info('Folder has been sorted')
+    print('Folder has been sorted')
