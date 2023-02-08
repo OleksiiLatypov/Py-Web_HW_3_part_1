@@ -4,7 +4,7 @@ from pathlib import Path
 from shutil import move, unpack_archive
 from threading import Thread
 import logging
-import re
+
 
 """
 py main.py --source 'path to folder'
