@@ -7,8 +7,7 @@ import logging
 import re
 
 """
-py main.py --source -s picture
-py main.py --output -o dist
+py main.py --source 'path to folder'
 """
 
 parser = argparse.ArgumentParser(description='App for sorting folder')
